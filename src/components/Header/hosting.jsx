@@ -1,258 +1,255 @@
+const express = require('express')
+const app = express()
+const port = 3300
 //
 // //
 // // // For notifications
 // //
 //
 
+//  var defaultWidth=window.screen.width > 768 ? window.screen.width * 1 / 3 : window.screen.width;
+//  var style = {
+//   Wrapper: {},
+//   Containers: {
+//     DefaultStyle: {
+//       position: "fixed",
+//       width: defaultWidth,
+//       padding: "10px 10px 10px 20px",
+//       zIndex: 9998,
+//       WebkitBoxSizing: "",
+//       MozBoxSizing: "",
+//       boxSizing: "",
+//       height: "auto",
+//       display: "inline-block",
+//       border: "0",
+//       fontSize: "14px",
+//       WebkitFontSmoothing: "antialiased",
+//       fontFamily: '"Roboto","Helvetica Neue",Arial,sans-serif',
+//       fontWeight: "400",
+//       color: "#FFFFFF"
+//     },
 
-var defaultWidth =
-  window.screen.width > 768 ? window.screen.width * 1 / 3 : window.screen.width;
+//     tl: {
+//       top: "0px",
+//       bottom: "auto",
+//       left: "0px",
+//       right: "auto"
+//     },
 
-var style = {
-  Wrapper: {},
-  Containers: {
-    DefaultStyle: {
-      position: "fixed",
-      width: defaultWidth,
-      padding: "10px 10px 10px 20px",
-      zIndex: 9998,
-      WebkitBoxSizing: "",
-      MozBoxSizing: "",
-      boxSizing: "",
-      height: "auto",
-      display: "inline-block",
-      border: "0",
-      fontSize: "14px",
-      WebkitFontSmoothing: "antialiased",
-      fontFamily: '"Roboto","Helvetica Neue",Arial,sans-serif',
-      fontWeight: "400",
-      color: "#FFFFFF"
-    },
+//     tr: {
+//       top: "0px",
+//       bottom: "auto",
+//       left: "auto",
+//       right: "0px"
+//     },
 
-    tl: {
-      top: "0px",
-      bottom: "auto",
-      left: "0px",
-      right: "auto"
-    },
+//     tc: {
+//       top: "0px",
+//       bottom: "auto",
+//       margin: "0 auto",
+//       left: "50%",
+//       marginLeft: -(defaultWidth / 2)
+//     },
 
-    tr: {
-      top: "0px",
-      bottom: "auto",
-      left: "auto",
-      right: "0px"
-    },
+//     bl: {
+//       top: "auto",
+//       bottom: "0px",
+//       left: "0px",
+//       right: "auto"
+//     },
 
-    tc: {
-      top: "0px",
-      bottom: "auto",
-      margin: "0 auto",
-      left: "50%",
-      marginLeft: -(defaultWidth / 2)
-    },
+//     br: {
+//       top: "auto",
+//       bottom: "0px",
+//       left: "auto",
+//       right: "0px"
+//     },
 
-    bl: {
-      top: "auto",
-      bottom: "0px",
-      left: "0px",
-      right: "auto"
-    },
+//     bc: {
+//       top: "auto",
+//       bottom: "0px",
+//       margin: "0 auto",
+//       left: "50%",
+//       marginLeft: -(defaultWidth / 2)
+//     }
+//   },
 
-    br: {
-      top: "auto",
-      bottom: "0px",
-      left: "auto",
-      right: "0px"
-    },
+//   NotificationItem: {
+//     DefaultStyle: {
+//       position: "relative",
+//       width: "100%",
+//       cursor: "pointer",
+//       borderRadius: "4px",
+//       fontSize: "14px",
+//       margin: "10px 0 0",
+//       padding: "10px",
+//       display: "block",
+//       WebkitBoxSizing: "border-box",
+//       MozBoxSizing: "border-box",
+//       boxSizing: "border-box",
+//       opacity: 0,
+//       transition: "all 0.5s ease-in-out",
+//       WebkitTransform: "translate3d(0, 0, 0)",
+//       transform: "translate3d(0, 0, 0)",
+//       willChange: "transform, opacity",
 
-    bc: {
-      top: "auto",
-      bottom: "0px",
-      margin: "0 auto",
-      left: "50%",
-      marginLeft: -(defaultWidth / 2)
-    }
-  },
+//       isHidden: {
+//         opacity: 0
+//       },
 
-  NotificationItem: {
-    DefaultStyle: {
-      position: "relative",
-      width: "100%",
-      cursor: "pointer",
-      borderRadius: "4px",
-      fontSize: "14px",
-      margin: "10px 0 0",
-      padding: "10px",
-      display: "block",
-      WebkitBoxSizing: "border-box",
-      MozBoxSizing: "border-box",
-      boxSizing: "border-box",
-      opacity: 0,
-      transition: "all 0.5s ease-in-out",
-      WebkitTransform: "translate3d(0, 0, 0)",
-      transform: "translate3d(0, 0, 0)",
-      willChange: "transform, opacity",
+//       isVisible: {
+//         opacity: 1
+//       }
+//     },
 
-      isHidden: {
-        opacity: 0
-      },
+//     success: {
+//       borderTop: 0,
+//       backgroundColor: "#a1e82c",
+//       WebkitBoxShadow: 0,
+//       MozBoxShadow: 0,
+//       boxShadow: 0
+//     },
 
-      isVisible: {
-        opacity: 1
-      }
-    },
+//     error: {
+//       borderTop: 0,
+//       backgroundColor: "#fc727a",
+//       WebkitBoxShadow: 0,
+//       MozBoxShadow: 0,
+//       boxShadow: 0
+//     },
 
-    success: {
-      borderTop: 0,
-      backgroundColor: "#a1e82c",
-      WebkitBoxShadow: 0,
-      MozBoxShadow: 0,
-      boxShadow: 0
-    },
+//     warning: {
+//       borderTop: 0,
+//       backgroundColor: "#ffbc67",
+//       WebkitBoxShadow: 0,
+//       MozBoxShadow: 0,
+//       boxShadow: 0
+//     },
 
-    error: {
-      borderTop: 0,
-      backgroundColor: "#fc727a",
-      WebkitBoxShadow: 0,
-      MozBoxShadow: 0,
-      boxShadow: 0
-    },
+//     info: {
+//       borderTop: 0,
+//       backgroundColor: "#63d8f1",
+//       WebkitBoxShadow: 0,
+//       MozBoxShadow: 0,
+//       boxShadow: 0
+//     }
+//   },
 
-    warning: {
-      borderTop: 0,
-      backgroundColor: "#ffbc67",
-      WebkitBoxShadow: 0,
-      MozBoxShadow: 0,
-      boxShadow: 0
-    },
+//   Title: {
+//     DefaultStyle: {
+//       fontSize: "30px",
+//       margin: "0",
+//       padding: 0,
+//       fontWeight: "bold",
+//       color: "#FFFFFF",
+//       display: "block",
+//       left: "15px",
+//       position: "absolute",
+//       top: "50%",
+//       marginTop: "-15px"
+//     }
+//   },
 
-    info: {
-      borderTop: 0,
-      backgroundColor: "#63d8f1",
-      WebkitBoxShadow: 0,
-      MozBoxShadow: 0,
-      boxShadow: 0
-    }
-  },
+//   MessageWrapper: {
+//     DefaultStyle: {
+//       marginLeft: "55px",
+//       marginRight: "30px",
+//       padding: "0 12px 0 0",
+//       color: "#FFFFFF",
+//       maxWidthwidth: "89%"
+//     }
+//   },
 
-  Title: {
-    DefaultStyle: {
-      fontSize: "30px",
-      margin: "0",
-      padding: 0,
-      fontWeight: "bold",
-      color: "#FFFFFF",
-      display: "block",
-      left: "15px",
-      position: "absolute",
-      top: "50%",
-      marginTop: "-15px"
-    }
-  },
+//   Dismiss: {
+//     DefaultStyle: {
+//       fontFamily: "inherit",
+//       fontSize: "21px",
+//       color: "#000",
+//       float: "right",
+//       position: "absolute",
+//       right: "10px",
+//       top: "50%",
+//       marginTop: "-13px",
+//       backgroundColor: "#FFFFFF",
+//       display: "block",
+//       borderRadius: "50%",
+//       opacity: ".4",
+//       lineHeight: "11px",
+//       width: "25px",
+//       height: "25px",
+//       outline: "0 !important",
+//       textAlign: "center",
+//       padding: "6px 3px 3px 3px",
+//       fontWeight: "300",
+//       marginLeft: "65px"
+//     },
 
-  MessageWrapper: {
-    DefaultStyle: {
-      marginLeft: "55px",
-      marginRight: "30px",
-      padding: "0 12px 0 0",
-      color: "#FFFFFF",
-      maxWidthwidth: "89%"
-    }
-  },
+//     success: {
+//       // color: '#f0f5ea',
+//       // backgroundColor: '#a1e82c'
+//     },
 
-  Dismiss: {
-    DefaultStyle: {
-      fontFamily: "inherit",
-      fontSize: "21px",
-      color: "#000",
-      float: "right",
-      position: "absolute",
-      right: "10px",
-      top: "50%",
-      marginTop: "-13px",
-      backgroundColor: "#FFFFFF",
-      display: "block",
-      borderRadius: "50%",
-      opacity: ".4",
-      lineHeight: "11px",
-      width: "25px",
-      height: "25px",
-      outline: "0 !important",
-      textAlign: "center",
-      padding: "6px 3px 3px 3px",
-      fontWeight: "300",
-      marginLeft: "65px"
-    },
+//     error: {
+//       // color: '#f4e9e9',
+//       // backgroundColor: '#fc727a'
+//     },
 
-    success: {
-      // color: '#f0f5ea',
-      // backgroundColor: '#a1e82c'
-    },
+//     warning: {
+//       // color: '#f9f6f0',
+//       // backgroundColor: '#ffbc67'
+//     },
 
-    error: {
-      // color: '#f4e9e9',
-      // backgroundColor: '#fc727a'
-    },
+//     info: {
+//       // color: '#e8f0f4',
+//       // backgroundColor: '#63d8f1'
+//     }
+//   },
 
-    warning: {
-      // color: '#f9f6f0',
-      // backgroundColor: '#ffbc67'
-    },
+//   Action: {
+//     DefaultStyle: {
+//       background: "#ffffff",
+//       borderRadius: "2px",
+//       padding: "6px 20px",
+//       fontWeight: "bold",
+//       margin: "10px 0 0 0",
+//       border: 0
+//     },
 
-    info: {
-      // color: '#e8f0f4',
-      // backgroundColor: '#63d8f1'
-    }
-  },
+//     success: {
+//       backgroundColor: "#a1e82c",
+//       color: "#ffffff"
+//     },
 
-  Action: {
-    DefaultStyle: {
-      background: "#ffffff",
-      borderRadius: "2px",
-      padding: "6px 20px",
-      fontWeight: "bold",
-      margin: "10px 0 0 0",
-      border: 0
-    },
+//     error: {
+//       backgroundColor: "#fc727a",
+//       color: "#ffffff"
+//     },
 
-    success: {
-      backgroundColor: "#a1e82c",
-      color: "#ffffff"
-    },
+//     warning: {
+//       backgroundColor: "#ffbc67",
+//       color: "#ffffff"
+//     },
 
-    error: {
-      backgroundColor: "#fc727a",
-      color: "#ffffff"
-    },
+//     info: {
+//       backgroundColor: "#63d8f1",
+//       color: "#ffffff"
+//     }
+//   },
 
-    warning: {
-      backgroundColor: "#ffbc67",
-      color: "#ffffff"
-    },
-
-    info: {
-      backgroundColor: "#63d8f1",
-      color: "#ffffff"
-    }
-  },
-
-  ActionWrapper: {
-    DefaultStyle: {
-      margin: 0,
-      padding: 0
-    }
-  }
-};
-
-//
-// //
-// // // For tables
-// //
-//
-const tdArrayMap = [["","USA","2.920","53.23%"],["","Germany","1.300","20.43%"],["","Australia","760",
-  "10.35%"],["","United Kingdom","690","7.87%"],["","Romania","600","5.94%"],["","Brasil","550", "4.34%"]];
-const thArray = ["","ROLE", "FUNCTIONS", "ACTIONS"];
-const tdArray = [
+//   ActionWrapper: {
+//     DefaultStyle: {
+//       margin: 0,
+//       padding: 0
+//     }
+//   }
+// }
+ 
+const variablesObject={
+ 
+tdArrayMap : [["","USA","2.920","53.23%"],["","Germany","1.300","20.43%"],["","Australia","760",
+  "10.35%"],["","United Kingdom","690","7.87%"],["","Romania","600","5.94%"],["","Brasil","550", "4.34%"]],
+thArray : ["","ROLE", "FUNCTIONS", "ACTIONS"],
+ tdArray : [
   [false,"Admin", "Users", ["fa fa-picture-o" ,"fa fa-pencil-square-o","fa fa-trash-o"]],
   [false,"Admin", "Functions", ["fa fa-picture-o" ,"fa fa-pencil-square-o","fa fa-trash-o"]],
   [false,"Admin", "Roles",["fa fa-picture-o" ,"fa fa-pencil-square-o","fa fa-trash-o"]],
@@ -262,21 +259,18 @@ const tdArray = [
   [false,"Admin", "Quiz", ["fa fa-picture-o" ,"fa fa-pencil-square-o","fa fa-trash-o"]],
   [false,"Conversation Writter", "Chatter", ["fa fa-picture-o" ,"fa fa-pencil-square-o","fa fa-trash-o"]]
 
-];
-
-const thA=["","ROLE", "FUNCTIONS", "ACTIONS"];
-const tdA=[
+],
+thA:["","ROLE", "FUNCTIONS", "ACTIONS"],
+tdA:[
   [false,"Default", "Default role - access to homepage and profile page", ["fa fa-picture-o" ,"fa fa-pencil-square-o","fa fa-trash-o"]],
   [false,"Admin", "Admin", ["fa fa-picture-o" ,"fa fa-pencil-square-o","fa fa-trash-o"]],
   [false,"Conversation Writer", "Conversation",["fa fa-picture-o" ,"fa fa-pencil-square-o","fa fa-trash-o"]],
   [false,"Script writer	", "Script writer", ["fa fa-picture-o" ,"fa fa-pencil-square-o","fa fa-trash-o"]],
- 
-];
-
-const tablehe=["APPLICATION","VIEW ID"];
-const tabletd=["purpleslate New","183045738"];
-const thE=["","NAME","EMAIL","DESIGNATION","DEPARTMENT","MOBILE NUMBER","TYPE","STATUS","ACTIONS"]
-const tdE=[
+],
+tablehe:["APPLICATION","VIEW ID"],
+tabletd:["purpleslate New","183045738"],
+thE:["","NAME","EMAIL","DESIGNATION","DEPARTMENT","MOBILE NUMBER","TYPE","STATUS","ACTIONS"],
+tdE:[
   [false,"admin","admin@purpleslate.in","Admin user","information technology","9952809102","Native","VERIFICATION",["fa fa-picture-o" ,"fa fa-pencil-square-o","fa fa-trash-o"]],
   [false,"Sivaram","	sivaram.parameswaran@gmail.com"," "," ","9360051120","Native","VERIFICATION",["fa fa-picture-o" ,"fa fa-pencil-square-o","fa fa-trash-o"]],
   [false,"Magesh","mmagesh73@gmail.com","","Tester","Tester","9012367890","Native","VERIFICATION",["fa fa-picture-o" ,"fa fa-pencil-square-o","fa fa-trash-o"]],
@@ -285,13 +279,8 @@ const tdE=[
   [false,"Swe S","	swetha@purpleslate.in","Tester","Tester","95678435678","Native","VERIFICATION",["fa fa-picture-o" ,"fa fa-pencil-square-o","fa fa-trash-o"]],
   [false,"test","test@test.com","tester","test","9876543256","Native","VERIFICATION",["fa fa-picture-o" ,"fa fa-pencil-square-o","fa fa-trash-o"]],
   [false,"test","test@gmail.com"," "," ","9807654345","Native","VERIFICATION",["fa fa-picture-o" ,"fa fa-pencil-square-o","fa fa-trash-o"]],
-]
-//
-// //
-// // // For icons
-// //
-//
-const iconsArray = [
+],
+iconsArray : [
   "pe-7s-album",
   "pe-7s-arc",
   "pe-7s-back-2",
@@ -494,25 +483,16 @@ const iconsArray = [
   "pe-7s-albums",
   "pe-7s-alarm",
   "pe-7s-airplay"
-];
-
-//
-// //
-// // // // For dashboard's charts
-// //
-//
-// Data for Pie Chart
-var dataPie = {
-  labels: ["53%", "36%", "11%"],
-  series: [53, 36, 11]
-};
-var legendPie = {
+],
+ dataPie : {
+  labels: ["55%", "35%", "10%"],
+  series: [55, 35, 10]
+},
+legendPie:{
   names: ["Open", "Bounce", "Unsubscribe"],
   types: ["info", "danger", "warning"]
-};
-
-// Data for Line Chart
-var dataSales = {
+},
+dataSales:{
   labels: [
     "9:00AM",
     "12:00AM",
@@ -528,8 +508,8 @@ var dataSales = {
     [67, 152, 143, 240, 287, 335, 435, 437],
     [23, 113, 67, 108, 190, 239, 307, 308]
   ]
-};
-var optionsSales = {
+}, 
+optionsSales : {
   low: 0,
   high: 800,
   showArea: false,
@@ -544,8 +524,8 @@ var optionsSales = {
   chartPadding: {
     right: 50
   }
-};
-var responsiveSales = [
+},
+ responsiveSales : [
   [
     "screen and (max-width: 640px)",
     {
@@ -556,14 +536,12 @@ var responsiveSales = [
       }
     }
   ]
-];
-var legendSales = {
+],
+ legendSales : {
   names: ["Open", "Click", "Click Second Time"],
   types: ["info", "danger", "warning"]
-};
-
-// Data for Bar Chart
-var dataBar = {
+}, 
+dataBar : {
   labels: [
     "Jan",
     "Feb",
@@ -582,15 +560,15 @@ var dataBar = {
     [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895],
     [412, 243, 280, 580, 453, 353, 300, 364, 368, 410, 636, 695]
   ]
-};
-var optionsBar = {
+},
+ optionsBar : {
   seriesBarDistance: 10,
   axisX: {
     showGrid: false
   },
   height: "245px"
-};
-var responsiveBar = [
+},
+responsiveBar : [
   [
     "screen and (max-width: 640px)",
     {
@@ -602,33 +580,17 @@ var responsiveBar = [
       }
     }
   ]
-];
-var legendBar = {
+],
+legendBar : {
   names: ["Tesla Model S", "BMW 5 Series"],
   types: ["info", "danger"]
-};
+}
+}
 
-module.exports = {
-  style, // For notifications (App container and Notifications view)
-  thArray,
-  tdArray,
-  thA,
-  tdA,
-  thE,
-  tablehe,
-  tabletd,
-  tdE, // For tables (TableList view)
-  iconsArray, // For icons (Icons view)
-  dataPie,
-  legendPie,
-  dataSales,
-  optionsSales,
-  responsiveSales,
-  legendSales,
-  dataBar,
-  optionsBar,
-  responsiveBar,
-  tdArrayMap,
-  legendBar // For charts (Dashboard view)
-};
 
+app.get('/', (req, res) => {
+    
+    res.setHeader("access-control-allow-origin","*")
+    res.send(variablesObject) })
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))

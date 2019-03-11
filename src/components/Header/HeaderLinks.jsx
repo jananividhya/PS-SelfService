@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavItem, Nav, NavDropdown, MenuItem } from "react-bootstrap";
 import "./header.css"
+import axios from 'axios';
 class HeaderLinks extends Component {
  constructor(props){
   super(props);
@@ -9,7 +10,12 @@ class HeaderLinks extends Component {
  handleCollapseButtonClick = (props) => {
   this.props.handleCollapseButtonClick();
 };
+
  render() {
+  axios.get(`http://localhost:3300`)
+  .then(res => {
+    const persons = res.data;
+  })
   const notification = (
    <div>
     <i className="far fa-bell" />

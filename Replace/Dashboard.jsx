@@ -49,7 +49,6 @@ class Dashboard extends Component {
     return legend;
   }
   render() {
-    console.log("UK",Countries.getCode("Romania"));
     const mapData = { 
       US:"rgb(68, 68, 68)",
        CA:"rgb(170, 170, 170)",

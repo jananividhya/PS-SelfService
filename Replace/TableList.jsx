@@ -8,15 +8,7 @@ class TableList extends Component {
     super(props);
     this.state = {
       icon: "fa fa-sort",
-      thArray: ["fa fa-square-o", "ROLE", "FUNCTIONS", "ACTIONS"],
-      tdArray: [
-        ["Admin", "Dakota Rice" ,false],
-        [ "Admin", "Minerva Hooper" ,false],
-        [ "Admin", "Sage Rodriguez" ,false],
-        [ "Admin", "Philip Chaney" ,false],
-        [ "Admin", "Doris Greene" ,false],
-        ["Admin", "Mason Porter" ,false],
-      ],
+      tdArray:[],
       headingCheck:false,
       headingClicked: false,
     }
@@ -168,7 +160,6 @@ class TableList extends Component {
                               return <th key={key} className="text-center">{prop}
                                 <button className="ssss" onClick={this.iconclick}>
                                   <button onClick={() => this.sortBy("1")}>
-                                    {console.log("tdArray->", this.state.tdArray)}
                                     <i className={this.state.icon}></i>
                                   </button>
                                 </button>

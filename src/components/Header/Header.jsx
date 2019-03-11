@@ -21,7 +21,6 @@ class Header extends Component {
   node.id = "bodyClick";
   node.onclick = function() {
    this.parentElement.removeChild(this);
-   console.log("document",node);
    document.documentElement.classList.toggle("nav-open");
   };
   document.body.appendChild(node);

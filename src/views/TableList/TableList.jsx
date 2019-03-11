@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Grid, Row, Col, Table } from "react-bootstrap";
 import "./Tablelist.css";
+import Popup from "reactjs-popup";
 import Card from "components/Card/Card.jsx";
-import { thArray, tdArray } from "variables/Variables.jsx";
-
+import axios from 'axios';
 import '../Icons/Icons.css';
 
 class TableList extends Component {
@@ -11,10 +11,11 @@ constructor(props){
   super(props);
   this.state={
     icon:"fa fa-sort",
-    tdArray:tdArray,
+    thArray:[],
+    tdArray:[],
     headingCheck:false,
     headingClicked: false,
-  
+    showModal:false
   }
   this.iconclick=this.iconclick.bind(this);
   this.compareBy.bind(this);
@@ -83,9 +84,16 @@ compareBy(key) {
   };
 }
 
+toggleModal = () => {
+  console.log("ksdcbebwk")
+  this.setState({
+    showModal:!this.state.showModal
+  })
+}
+
 sortBy=(key)=> {
   console.log("sortBy",key)
-  let arrayCopy = tdArray;
+  let arrayCopy = this.state.tdArray;
 if(this.state.icon==="fa fa-sort-desc"){
   console.log("this.state.icon",this.state.icon)
  arrayCopy.reverse( arrayCopy.sort(this.compareBy(key)));
@@ -132,7 +140,15 @@ headerCheckboxClick = () => {
      prop[0]=!this.state.headingCheck;
   })
  }
-
+ componentDidMount() {
+  axios.get(`http://localhost:3300`)
+    .then(res => {
+      this.setState({
+        tdArray:res.data.tdArray,
+        thArray:res.data.thArray
+      })
+    })
+}
  render() {
 
     return (
@@ -172,7 +188,7 @@ headerCheckboxClick = () => {
                     <Table hover>
                       <thead>
                         <tr>
-                          {thArray.map((prop, key) => {
+                          {this.state.thArray.map((prop, key) => {
                          
                             if (key === 0)
                             return <th key={key} className="text-center"><input type="checkbox" name="listItem" onClick={this.headerCheckboxClick} checked={this.state.headingCheck} />
@@ -196,15 +212,16 @@ headerCheckboxClick = () => {
                       {
                           this.state.tdArray.map((prop,key) => {
                             return(
-                              <tr>  
-                              <td key={key} className="text-center"><input type="checkbox" onClick={()=> this.rowCheckboxClick(key)} checked={prop[0]}/></td>
-                              <td key={key} className="text-center">{prop[1]}</td>
-                              <td key={key} className="text-center">{prop[2]}</td>
-                              <td key={key} className="text-right td-actions">
-                                    <a rel="tooltip" title="View" className="btn btn-link btn-info table-action view" href="javascript:void(0)"><i className="fa fa-image"></i></a>
-
+                              <tr key={key}>  
+                              <td  className="text-center"><input type="checkbox" onClick={()=> this.rowCheckboxClick(key)} checked={prop[0]}/></td>
+                              <td  className="text-center">{prop[1]}</td>
+                              <td  className="text-center">{prop[2]}</td>
+                              <td  className="text-right td-actions">
+                                    <Popup trigger={<a rel="tooltip" title="View" className="btn btn-link btn-info table-action view" href="javascript:void(0)"><i className="fa fa-image"></i></a>}>
+                                    <p>{prop[1]}</p>
+                                    <p>{prop[2]}</p>
+                                    </Popup>
                                     <a rel="tooltip" title="Edit" className="btn btn-link btn-warning table-action edit" href="javascript:void(0)"><i class="fa fa-edit"></i></a>
-
                                     <a rel="tooltip" title="Remove" className="btn btn-link btn-danger table-action remove" href="javascript:void(0)"><i className="fa fa-trash"></i></a>
                                   </td>
                               </tr>

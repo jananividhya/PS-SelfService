@@ -6,7 +6,6 @@ import { Card } from "components/Card/Card.jsx";
 import { StatsCard } from "components/StatsCard/StatsCard.jsx";
 import { Tasks } from "components/Tasks/Tasks.jsx";
 import {
-  dataPie,
   legendPie,
   dataSales,
   optionsSales,
@@ -17,7 +16,7 @@ import {
   responsiveBar,
   legendBar
 } from "variables/Variables.jsx";
-
+const respondObject;
 class Dashboard extends Component {
   createLegend(json) {
     var legend = [];
@@ -28,6 +27,12 @@ class Dashboard extends Component {
       legend.push(json["names"][i]);
     }
     return legend;
+  }
+  componentDidMount() {
+    axios.get(`http://localhost:3300`)
+      .then(res => {
+        respondObject=res.data;
+      })
   }
   render() {
     return (
@@ -84,7 +89,7 @@ class Dashboard extends Component {
                     id="chartPreferences"
                     className="ct-chart ct-perfect-fourth"
                   >
-                    <ChartistGraph data={dataPie} type="Pie" />
+                    <ChartistGraph data={respondObject.dataPie1} type="Pie" />
                   </div>
                 }
                 legend={
