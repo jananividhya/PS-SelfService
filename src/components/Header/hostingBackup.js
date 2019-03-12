@@ -585,26 +585,7 @@ legendBar : {
 }
 }
 
-app.get("/delete/:id",function(req,res,next){
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-  variablesObject.tdArray.splice(req.params.id,1);
-  res.send(variablesObject)
-})
-
-app.get("/update/:key/:data1/:data2",function(req,res,next){
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-  console.log("params->",req.params);
-  variablesObject.tdArray[req.params.key][1]=req.params.data1;
-  variablesObject.tdArray[req.params.key][2]=req.params.data2;
-  // variablesObject.tdArray.splice(req.params.id,1);
-  res.send(variablesObject)
-})
-
-app.options("/", function(req, res, next){
+app.options("/*", function(req, res, next){
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');

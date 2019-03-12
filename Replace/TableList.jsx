@@ -41,9 +41,6 @@ class TableList extends Component {
 
   // http://reactkungfu.com/2015/07/why-and-how-to-bind-methods-in-your-react-component-classes/
   // bind the context for compareBy & sortBy to this component instance
-
-
-
   compareBy(key) {
     return function (a, b) {
       console.log("a   ", a[key], b[key])
@@ -59,9 +56,6 @@ class TableList extends Component {
       return 0;
     };
   }
-
- 
-
   sortBy = (key) => {
     console.log("sortBy", key)
     let arrayCopy = this.state.tdArray;
@@ -102,8 +96,6 @@ class TableList extends Component {
       })
     }
   }
-
-  
 // checkClickSperateRow=() => {
 //   console.log("clicksperate",this.state.checkRow)
 //   this.setState({
@@ -141,7 +133,6 @@ class TableList extends Component {
                     <br></br>
 
                     <input style={{ marginLeft: "15px", color: "black", width: "97%", boxSizing: "border-box", border: "2px solid #ccc", borderRadius: "4px", fontSize: "16px", backgroundColor: "white", padding: "10px" }} type="text" name="search" placeholder="Search"></input>
-
                     <br></br>
                     <br></br>
                     <Table hover id="myTable">
@@ -203,14 +194,10 @@ class TableList extends Component {
                       <a href="#">&rsaquo;</a>
                       <a href="#">&raquo;</a>
                     </div>
-
-
                   </div>
                 }
               />
             </Col>
-
-
           </Row>
         </Grid>
       </div>

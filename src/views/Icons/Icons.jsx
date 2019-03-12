@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Grid, Row, Col,Table } from "react-bootstrap";
 import "../TableList/Tablelist.css";
 import Card from "components/Card/Card";
-import { thE,tdE } from "variables/Variables.jsx";
+import axios from 'axios';
 // import "./Icons.css";
 class Icons extends Component {
   constructor(props){
@@ -11,10 +11,10 @@ class Icons extends Component {
       icon1:"fa fa-sort",
       icon2:"fa fa-sort",
       icon3:"fa fa-sort",
-      tdE:tdE,
+      tdE:[],
+      thE:[],
       headingCheck:false,
       headingClicked: false,
-    
     }
     this.iconclick1=this.iconclick1.bind(this);
     this.iconclick2=this.iconclick2.bind(this);
@@ -25,6 +25,14 @@ class Icons extends Component {
     this.sortBy2.bind(this);
      this.compareBy3.bind(this);
     this.sortBy3.bind(this);
+    axios.get(`http://localhost:3300`)
+      .then(res => {
+        console.log("printing",res.data)
+        this.setState({
+          tdE:res.data.tdE,
+          thE:res.data.thE,
+        })
+      })
   }
   iconclick1(){
     if(this.state.icon1==="fa fa-sort")
@@ -66,7 +74,7 @@ class Icons extends Component {
   
   sortBy1=(key)=> {
     console.log("sortBy",key)
-    let arrayC = tdE;
+    let arrayC = this.state.tdE;
   if(this.state.icon1==="fa fa-sort-desc"){
     console.log("this.state.icon",this.state.icon1)
    arrayC.reverse( arrayC.sort(this.compareBy1(key)));
@@ -122,7 +130,7 @@ class Icons extends Component {
   
   sortBy2=(key)=> {
     console.log("sortBy",key)
-    let arrayC = tdE;
+    let arrayC = this.state.tdE;
   if(this.state.icon2==="fa fa-sort-desc"){
     console.log("this.state.icon",this.state.icon1)
    arrayC.reverse( arrayC.sort(this.compareBy2(key)));
@@ -178,7 +186,7 @@ class Icons extends Component {
   
   sortBy3=(key)=> {
     console.log("sortBy",key)
-    let arrayC = tdE;
+    let arrayC = this.state.tdE;
   if(this.state.icon3==="fa fa-sort-desc"){
     console.log("this.state.icon",this.state.icon1)
    arrayC.reverse( arrayC.sort(this.compareBy3(key)));
@@ -267,7 +275,7 @@ class Icons extends Component {
                     <Table hover>
                       <thead>
                         <tr>
-                          {thE.map((prop, key) => {
+                          {this.state.thE.map((prop, key) => {
                             console.log(key);
                             if (key === 0)
                             return <th key={key} className="text-center"><input type="checkbox" name="listItem" onClick={this.headerCheckboxClick} checked={this.state.headingCheck} />

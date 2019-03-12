@@ -2,18 +2,25 @@ import React, { Component } from "react";
 import { Grid, Row, Col, Table } from "react-bootstrap";
 import "../TableList/Tablelist.css";
 import Card from "components/Card/Card.jsx";
-import { thA, tdA } from "variables/Variables.jsx";
-
-
+import axios from 'axios'
 class Typography extends Component {
   constructor(props){
     super(props);
     this.state={
       icon:"fa fa-sort",
-      tdA:tdA,
+      tdA:[],
+      thA:[],
       headingCheck:false,
       headingClicked: false,
     }
+    axios.get(`http://localhost:3300`)
+      .then(res => {
+        console.log("printing",res.data)
+        this.setState({
+          tdA:res.data.tdA,
+          thA:res.data.thA,
+        })
+      })
     this.iconclick=this.iconclick.bind(this);
     this.compareBy.bind(this);
     this.sortBy.bind(this);
@@ -90,7 +97,7 @@ class Typography extends Component {
    }
   sortBy=(key)=> {
     console.log("sortBy",key)
-    let arrayco = tdA;
+    let arrayco = this.state.tdA;
   if(this.state.icon==="fa fa-sort-desc"){
     console.log("this.state.icon",this.state.icon)
    arrayco.reverse( arrayco.sort(this.compareBy(key)));
@@ -140,7 +147,7 @@ class Typography extends Component {
                     <Table hover>
                       <thead>
                         <tr>
-                          {thA.map((prop, key) => {
+                          {this.state.thA.map((prop, key) => {
                             console.log(key);
                             if (key === 0)
                             return <th key={key} className="text-center"><input type="checkbox" name="listItem" onClick={this.headerCheckboxClick} checked={this.state.headingCheck} />
