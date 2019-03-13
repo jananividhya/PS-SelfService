@@ -9,7 +9,7 @@ const dashboardRoutes = [
   {
     path: "/smalltalk",
     name: "SMALL TALK",
-    icon: "fas fa-user-friends",
+    icon: "fas fa-comment-alt",
     component: null,
     hidden:false
   },
