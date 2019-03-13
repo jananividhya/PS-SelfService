@@ -3,6 +3,7 @@ import { Grid, Row, Col, Table } from "react-bootstrap";
 import "../TableList/Tablelist.css";
 import Card from "components/Card/Card.jsx";
 import axios from 'axios'
+import Popup from "reactjs-popup";
 class Typography extends Component {
   constructor(props){
     super(props);
@@ -112,8 +113,32 @@ class Typography extends Component {
     this.setState({tdArray: arrayco});
   }
   }
-
+  updateRecord = (key,dataFeild1,dataFeild2) => {
+    console.log("data----------",dataFeild1.value,this.state.tdA[key][1])
+     axios.get('http://localhost:3300/update3/'+key+'/'+dataFeild1.value+'/'+dataFeild2.value).then(
+       res => {
+         console.log("delete->", res.data.tdA)
+         this.setState({
+           tdA: res.data.tdA
+         })
+       }
+     );
+   }
+ 
+   deleteRecord = (key) => {
+     axios.get('http://localhost:3300/delete3/' + key).then(
+       res => {
+         console.log("delete->", res.data.tdA)
+         this.setState({
+           tdA: res.data.tdA
+         })
+       }
+     );
+   }
+ 
   render() {
+    var data1;
+    var data2;
     return (
       <div className="content">
         <Grid fluid>
@@ -180,9 +205,14 @@ class Typography extends Component {
                               <td key={key} className="text-right td-actions">
                                     <a rel="tooltip" title="View" className="btn btn-link btn-info table-action view" href="javascript:void(0)"><i className="fa fa-image"></i></a>
 
-                                    <a rel="tooltip" title="Edit" className="btn btn-link btn-warning table-action edit" href="javascript:void(0)"><i class="fa fa-edit"></i></a>
+                                    <Popup trigger={<a rel="tooltip" title="Edit" className="btn btn-link btn-warning table-action edit" href="javascript:void(0)"><i class="fa fa-edit"></i></a>}>
+                                    <input type="text" className='input 1' id="input1" defaultValue={prop[1]} ref={(input) => {data1=input}}></input>
+                                    <input type="text" className="input 2" defaultValue={prop[2]} id="input2" ref={(input) => {data2=input}}></input>
+                                    <button onClick={() => this.updateRecord(key,data1,data2)} >submit</button>
 
-                                    <a rel="tooltip" title="Remove" className="btn btn-link btn-danger table-action remove" href="javascript:void(0)"><i className="fa fa-trash"></i></a>
+                                    </Popup>
+
+                                    <a rel="tooltip" title="Remove" className="btn btn-link btn-danger table-action remove" href="javascript:void(0)" onClick={() => { this.deleteRecord(key) }}><i className="fa fa-trash"></i></a>
                                   </td>
                               </tr>
                           );

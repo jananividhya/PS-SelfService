@@ -135,9 +135,11 @@ class Sidebar extends Component {
                         <div className={(window.innerWidth>991)?(this.props.isCollapseOnButtonClick?(this.props.hovering?"":"iconCollapsed" ):""):""}>
                           <i className={prop.icon} style={{ fontSize: '1.1em', marginRight: "20px" }} />
                         </div>
-                        <p className={(window.innerWidth>991)?(this.props.isCollapseOnButtonClick?(this.props.hovering?"LinksFontSize":"noFont" ):"LinksFontSize"):""}>{prop.name}</p>
+                        <div className="buttonOnClick">
+                        <p className={(window.innerWidth>991)?(this.props.isCollapseOnButtonClick?(this.props.hovering?"LinksFontSize buttonOnClick":"noFont buttonOnClick" ):"LinksFontSize buttonOnClick"):"buttonOnClick"}>{prop.name}</p>
                         {(prop.hasOwnProperty("userName")) &&
-                          <p className={(window.innerWidth>991)?(this.props.isCollapseOnButtonClick?(this.props.hovering?"logged-user":"noFont" ):"logged-user"):"logged-user"}>{prop.userName}</p>}
+                          <p className={(window.innerWidth>991)?(this.props.isCollapseOnButtonClick?(this.props.hovering?"logged-user buttonOnClick":"noFont buttonOnClick" ):"logged-user buttonOnClick"):"logged-user buttonOnClick"}>{prop.userName}</p>}
+                          </div>
                       </NavLink>
                     </li>
                   );

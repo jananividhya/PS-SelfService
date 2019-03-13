@@ -9,36 +9,36 @@ const dashboardRoutes = [
   {
     path: "/smalltalk",
     name: "SMALL TALK",
-    icon: "fas fa-comment-alt",
-    component: DashBoard,
+    icon: "fas fa-user-friends",
+    component: null,
     hidden:false
   },
   {
     path: "/functions",
     name: "FUNCTIONS",
     icon: "fas fa-user-friends",
-    component: Functions,
+    component: TableList,
     hidden:false
   },
   {
     path: "/roles",
     name: "ROLES",
     icon: "fas fa-users-cog",
-    component: TableList,
+    component: Functions,
     hidden:false
   },
   {
     path: "/users",
     name: "USERS",
     icon: "fas fa-user",
-    component: Users,
+    component:Icons,
     hidden:false
   },
   {
      path: "/manageapplications",
      name: "MANAGE APPLICTIONS",
      icon: "fas fa-layer-group",
-     component: Icons,
+     component:  Maps,
      hidden:false
   },
   {
@@ -46,9 +46,16 @@ const dashboardRoutes = [
     name: "LOGOUT",
     userName:"ADMIN",
     icon: "fas fa-sign-out-alt",
-    component: Maps,
+    component: Users,
     hidden:false
-  }
+  },
+  {
+    path: "/",
+    name: "SMALL TALK",
+    icon: "fas fa-comment-alt",
+    component: DashBoard,
+    hidden:true
+  },
 ];
 
 export default dashboardRoutes;

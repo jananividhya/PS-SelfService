@@ -585,7 +585,7 @@ legendBar : {
 }
 }
 
-app.get("/delete/:id",function(req,res,next){
+app.get("/delete1/:id",function(req,res,next){
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
@@ -593,7 +593,7 @@ app.get("/delete/:id",function(req,res,next){
   res.send(variablesObject)
 })
 
-app.get("/update/:key/:data1/:data2",function(req,res,next){
+app.get("/update1/:key/:data1/:data2",function(req,res,next){
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
@@ -603,6 +603,54 @@ app.get("/update/:key/:data1/:data2",function(req,res,next){
   // variablesObject.tdArray.splice(req.params.id,1);
   res.send(variablesObject)
 })
+
+
+app.get("/delete2/:id",function(req,res,next){
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+  variablesObject.tdE.splice(req.params.id,1);
+  res.send(variablesObject)
+})
+
+app.get("/update2/:key/:data1/:data2/:data3/:data4/:data5/:data6/:data7",function(req,res,next){
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+  console.log("params->",req.params);
+  variablesObject.tdE[req.params.key][1]=req.params.data1;
+  variablesObject.tdE[req.params.key][2]=req.params.data2;
+  variablesObject.tdE[req.params.key][3]=req.params.data3;
+  variablesObject.tdE[req.params.key][4]=req.params.data4;
+  variablesObject.tdE[req.params.key][5]=req.params.data5;
+  variablesObject.tdE[req.params.key][6]=req.params.data6;
+  variablesObject.tdE[req.params.key][7]=req.params.data7;
+  console.log("paramsssss-------->",variablesObject.tdE)
+  res.send(variablesObject)
+})
+
+
+
+app.get("/delete3/:id",function(req,res,next){
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+  variablesObject.tdA.splice(req.params.id,1);
+  res.send(variablesObject)
+})
+
+app.get("/update3/:key/:data1/:data2",function(req,res,next){
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+  console.log("params->",req.params);
+  variablesObject.tdA[req.params.key][1]=req.params.data1;
+  variablesObject.tdA[req.params.key][2]=req.params.data2;
+  console.log("paramsssss-------->",variablesObject.tdE)
+  res.send(variablesObject)
+})
+
+
 
 app.options("/", function(req, res, next){
   res.header('Access-Control-Allow-Origin', '*');

@@ -3,7 +3,8 @@ import { Grid, Row, Col,Table } from "react-bootstrap";
 import "../TableList/Tablelist.css";
 import Card from "components/Card/Card";
 import axios from 'axios';
-// import "./Icons.css";
+import Popup from "reactjs-popup";
+// import "./Icons.css";import Popup from "reactjs-popup";
 class Icons extends Component {
   constructor(props){
     super(props);
@@ -201,6 +202,30 @@ class Icons extends Component {
     this.setState({tdE: arrayC});
   }
   }
+
+  updateRecord = (key,dataFeild1,dataFeild2,dataFeild3,dataFeild4,dataFeild5,dataFeild6,dataFeild7) => {
+    console.log("data----------",dataFeild1.value,this.state.tdE[key][1])
+     axios.get('http://localhost:3300/update2/'+key+'/'+dataFeild1.value+'/'+dataFeild2.value+'/'+dataFeild3.value+'/'+dataFeild4.value+'/'+dataFeild5.value+'/'+dataFeild6.value+'/'+dataFeild7.value).then(
+       res => {
+         console.log("delete->", res.data.tdE)
+         this.setState({
+           tdE: res.data.tdE
+         })
+       }
+     );
+   }
+ 
+   deleteRecord = (key) => {
+     axios.get('http://localhost:3300/delete2/' + key).then(
+       res => {
+         console.log("delete->", res.data.tdE)
+         this.setState({
+           tdE: res.data.tdE
+         })
+       }
+     );
+   }
+ 
   
  headerCheckboxClick = () => {
   let arrayCopy=this.state.tdE;
@@ -236,6 +261,13 @@ class Icons extends Component {
    }
  }
    render() {
+    var data1;
+    var data2;
+    var data3;
+    var data4;
+    var data5;
+    var data6;
+    var data7;
     return (
       <div className="content">
         <Grid fluid>
@@ -333,9 +365,18 @@ class Icons extends Component {
                               <td key={key} className="text-right td-actions">
                                     <a rel="tooltip" title="View" className="btn btn-link btn-info table-action view" href="javascript:void(0)"><i className="fa fa-image"></i></a>
 
-                                    <a rel="tooltip" title="Edit" className="btn btn-link btn-warning table-action edit" href="javascript:void(0)"><i class="fa fa-edit"></i></a>
+                                    <Popup trigger={ <a rel="tooltip" title="Edit" className="btn btn-link btn-warning table-action edit" href="javascript:void(0)"><i class="fa fa-edit"></i></a>}>
+                                    <input type="text" className='input 1' id="input1" defaultValue={prop[1]} ref={(input) => {data1=input}}></input>
+                                    <input type="text" className="input 2" defaultValue={prop[2]} id="input2" ref={(input) => {data2=input}}></input>
+                                    <input type="text" className="input 2" defaultValue={prop[3]} id="input2" ref={(input) => {data3=input}}></input>
+                                    <input type="text" className="input 2" defaultValue={prop[4]} id="input2" ref={(input) => {data4=input}}></input>
+                                    <input type="text" className="input 2" defaultValue={prop[5]} id="input2" ref={(input) => {data5=input}}></input>
+                                    <input type="text" className="input 2" defaultValue={prop[6]} id="input2" ref={(input) => {data6=input}}></input>
+                                    <input type="text" className="input 2" defaultValue={prop[7]} id="input2" ref={(input) => {data7=input}}></input>
+                                    <button onClick={() => this.updateRecord(key,data1,data2,data3,data4,data5,data6,data7)} >submit</button>
+                                    </Popup>
 
-                                    <a rel="tooltip" title="Remove" className="btn btn-link btn-danger table-action remove" href="javascript:void(0)"><i className="fa fa-trash"></i></a>
+                                    <a rel="tooltip" title="Remove" className="btn btn-link btn-danger table-action remove" href="javascript:void(0)" onClick={() => { this.deleteRecord(key) }}><i className="fa fa-trash"></i></a>
                                   </td>
                               </tr>
                           );

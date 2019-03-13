@@ -70,7 +70,10 @@ class Dashboard extends Component {
     { 
      
       (this.state.persons!=={})&&
+     
       <div className="content">
+ 
+      <br />
         <Grid fluid>
         {console.log("dataInside",this.state.persons)}
           <Row>
@@ -122,6 +125,7 @@ class Dashboard extends Component {
               />
             </Col>
           </Row>
+       
           <Row>
             <Col md={12}>
               <Card

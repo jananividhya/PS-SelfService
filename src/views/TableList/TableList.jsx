@@ -92,7 +92,7 @@ class TableList extends Component {
 
   updateRecord = (key,dataFeild1,dataFeild2) => {
    console.log("data----------",dataFeild1.value,this.state.tdArray[key][1])
-    axios.get('http://localhost:3300/update/'+key+'/'+dataFeild1.value+'/'+dataFeild2.value).then(
+    axios.get('http://localhost:3300/update1/'+key+'/'+dataFeild1.value+'/'+dataFeild2.value).then(
       res => {
         console.log("delete->", res.data.tdArray)
         this.setState({
@@ -103,7 +103,7 @@ class TableList extends Component {
   }
 
   deleteRecord = (key) => {
-    axios.get('http://localhost:3300/delete/' + key).then(
+    axios.get('http://localhost:3300/delete1/' + key).then(
       res => {
         console.log("delete->", res.data.tdArray)
         this.setState({
