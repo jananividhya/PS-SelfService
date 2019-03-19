@@ -51,8 +51,8 @@ const dashboardRoutes = [
   },
   {
     path: "/",
-    name: "SMALL TALK",
-    icon: "fas fa-comment-alt",
+    name: "",
+    icon: "",
     component: DashBoard,
     hidden:true
   },

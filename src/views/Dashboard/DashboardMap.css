@@ -14,7 +14,7 @@ h4{
 }
 .cardItems{
     padding-left: 0px !important;
-    width: 180px;
+    width: 40%;
     float:left;
 }
 .cardPoint{
@@ -43,3 +43,9 @@ h4{
     padding-top:0px;
     padding-left:10px !important;
 }
+section {
+    display: flex;
+width: 50% !important;
+    height: 290px !important;
+    
+  }

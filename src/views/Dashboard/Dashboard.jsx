@@ -136,8 +136,9 @@ class Dashboard extends Component {
                 ctTableResponsive
                 style={{ width: "100%" }}
                 content={
-                  <div style={{ width: "100px", display: "flex", flexDirection: "row" }} >
-                    <div>
+                  <div style={{ display: "flex", flexDirection: "row" }} >
+                  <section>
+                    <div className="country">
                       <Table style={{ width: "500px" }}>
                         <tbody className="tableBody">
 
@@ -171,12 +172,14 @@ class Dashboard extends Component {
                         </tbody>
                       </Table>
                     </div>
+                    </section>
+                    <section>
                     <div style={{ width: "500px", height: "300px" }} className="vectorMapCard">
                     <p style={{width:"600px"}}></p>
                          <VectorMap
       map={"world_mill"}
       backgroundColor="transparent" //change it to blue !!!
-      zoomOnScroll={false}
+      zoomOnScroll={true}
       containerStyle={{
         width: "100%",
         height: "290px"
@@ -212,7 +215,9 @@ class Dashboard extends Component {
       }}
     />
                     </div>
+                    </section>
                   </div>
+                  
                 }
               />
 

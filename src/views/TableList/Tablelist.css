@@ -75,3 +75,14 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
     padding: 20px;
   }
+
+  .left1{
+    padding-left: 120px !important;
+    padding-right: 0px !important;
+    margin-right: 0px !important;
+    width:150px !important;
+  }
+  .left2{
+    padding-left: 120px !important;
+    
+  }

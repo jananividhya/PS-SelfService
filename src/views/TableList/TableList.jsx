@@ -217,13 +217,13 @@ class TableList extends Component {
                             else if (key === 3)
                               return <th key={key} className="text-right">{prop}</th>;
                             else if (key === 2)
-                              return <th key={key} className="text-center">{prop}
+                              return <th key={key} className="text-left left2">{prop}
                                 {/* <button className="ssss" onClick={this.iconclick}> */}
                                 <i className="ssss" onClick={this.iconclick} className={this.state.icon}></i>
                                 {/* </button> */}
                               </th>;
                             else
-                              return <th key={key} className="text-center">{prop}</th>;
+                              return <th key={key} className="text-left left1">{prop}</th>;
                           })}
                         </tr>
 
@@ -235,8 +235,8 @@ class TableList extends Component {
                             return (
                               <tr key={key}>
                                 <td className="text-center"><input type="checkbox" onClick={() => this.rowCheckboxClick(key)} checked={prop[0]} /></td>
-                                <td className="text-center">{prop[1]}</td>
-                                <td className="text-center">{prop[2]}</td>
+                                <td className="text-left left1">{prop[1]}</td>
+                                <td className="text-left left2">{prop[2]}</td>
                                 <td className="text-right td-actions">
                                   <Popup trigger={<a rel="tooltip" title="View" className="btn btn-link btn-info table-action view" href="javascript:void(0)"><i className="fa fa-image"></i></a>}>
                                     <p>{prop[1]}</p>
